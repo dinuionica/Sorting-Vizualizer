@@ -1,0 +1,46 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Vizualizer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <h1 class="text-logo">Sorting Algorithm Vizualizer</h1>
+        <div class="bars_container" id="container_bars">
+        </div>
+        <div class="buttons_container">
+            <button id="btn_bubble_sort" type="button" class="btn btn-primary">Bubble Sort</button>
+            <button id="btn_bubble_sort" type="button" class="btn btn-primary">Selection Sort</button>
+            <button id="btn_bubble_sort" type="button" class="btn btn-primary">Count Sort</button>
+            <button id="btn_bubble_sort" type="button" class="btn btn-primary">Insertion Sort</button>
+            <button id="btn_bubble_sort" type="button" class="btn btn-primary">Merge Sort</button>
+            <button id="btn_new_array" type="button" class="btn btn-primary">Generate New Array</button>
+        </div>
+
+        <div class="ranges-div">
+            <div class="range-div">
+                <p class="range-p">Array Size</p>
+                <input type="range" min="5" max="60" value="50" class="range-slider" id="range_size">
+            </div>
+            <button id="btn_change_order" type="button" class="btn btn-primary"
+                style="border-radius: 50%; width:150px;">
+                Descending Order</button>
+            <div class="range-div">
+                <p class="range-p">Speed Sorting</p>
+                <input type="range" min="10" max="180" value="50" class="range-slider" id="range_slider">
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</body>
+
+</html>
