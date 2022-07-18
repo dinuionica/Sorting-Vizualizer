@@ -2,23 +2,16 @@ import { factorHeight } from "../script.js";
 import { sleep } from "../script.js";
 import { maxSpeed } from "../script.js";
 import { speed } from "../script.js";
-import { restoreButtonSettings } from "../script.js";
-
 
 
 export async function mergeSort(left: number, right: number, arrayOfBars: number[]) {
     if (left >= right) {
-        let bars = <HTMLScriptElement[]><any>document.getElementsByClassName("bar");
-        for (let i = 0; i < bars.length; ++i) {
-            bars[i].style.backgroundColor = "green";
-        }
         return;
     }
     let mid = Math.floor((left + right) / 2);
     await mergeSort(left, mid, arrayOfBars)
     await mergeSort(mid + 1, right, arrayOfBars);
     await merge(left, right, arrayOfBars);
-
 }
 
 async function merge(left: number, right: number, arrayOfBars: number[]) {
@@ -68,8 +61,4 @@ async function merge(left: number, right: number, arrayOfBars: number[]) {
     for (let i = 0; i < bars.length; ++i) {
         bars[i].style.backgroundColor = "red";
     }
-    /* restore the buttons style and functionality */
-    restoreButtonSettings();
-
 }
-

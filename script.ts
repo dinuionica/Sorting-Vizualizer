@@ -2,12 +2,14 @@
 import { bubbleSort } from "./sorting-algorithms/bubble_sort.js";
 import { insertionSort } from "./sorting-algorithms/insertion_sort.js";
 import { mergeSort } from "./sorting-algorithms/merge_sort.js";
+import { quickSort } from "./sorting-algorithms/quick_sort.js";
 
 /* Getting elements from the DOM */
 export let buttonRandomArray = document.getElementById("btn_new_array") as HTMLButtonElement | null;
 export let buttonBubbleSort = document.getElementById("btn_bubble_sort") as HTMLButtonElement | null;
 export let buttonInsertionSort = document.getElementById("btn_insertion_sort") as HTMLButtonElement | null;
 export let buttonMergeSort = document.getElementById("btn_merge_sort") as HTMLButtonElement | null;
+export let buttonQuickSort = document.getElementById("btn_quick_sort") as HTMLButtonElement | null;
 let barContainters = document.getElementById("container_bars");
 let speedSlider = (document.getElementById("range_slider") as HTMLInputElement);
 let sizeArraySlider = (document.getElementById("range_size") as HTMLInputElement);
@@ -17,6 +19,7 @@ let buttonChangeOrder = document.getElementById("btn_change_order");
 const minimumRange: number = 1;
 const maximumRange: number = 50;
 let numberOfBars: number = 50;
+let sorted = true;
 let AscendingOrder: boolean = true;
 let arrayOfBars: number[] = new Array(numberOfBars);
 export let factorHeight: number = 13;
@@ -29,7 +32,7 @@ export let expressionInsertionSort: string = "j >= 0 && arrayOfBars[j] > tempVal
 document.addEventListener('DOMContentLoaded', () => {
     createRandomArray();
     barContainters.innerHTML = "";
-    displayBarsOfArray(arrayOfBars)
+    displayBarsOfArray(arrayOfBars);
 })
 
 /* Getting value of the slider and changing the speed of the sorting */
@@ -97,6 +100,7 @@ buttonRandomArray.addEventListener("click", () => {
     buttonBubbleSort.disabled = false;
     buttonInsertionSort.disabled = false;
     buttonMergeSort.disabled = false;
+    buttonQuickSort.disabled = false;
 })
 
 /* The functionality of the button that starts the sorting of the array 
@@ -104,6 +108,7 @@ buttonRandomArray.addEventListener("click", () => {
 buttonBubbleSort.addEventListener('click', () => {
     buttonRandomArray.style.backgroundColor = "red";
     buttonRandomArray.disabled = true;
+    changeSettingsButtons();
     bubbleSort(arrayOfBars);
 })
 
@@ -112,8 +117,8 @@ buttonBubbleSort.addEventListener('click', () => {
 buttonInsertionSort.addEventListener('click', () => {
     buttonRandomArray.style.backgroundColor = "red";
     buttonRandomArray.disabled = true;
+    changeSettingsButtons();
     insertionSort(arrayOfBars);
-
 })
 
 /* The funcionality of the button that starts the sorting of the array
@@ -121,16 +126,32 @@ buttonInsertionSort.addEventListener('click', () => {
 buttonMergeSort.addEventListener('click', () => {
     buttonRandomArray.style.backgroundColor = "red";
     buttonRandomArray.disabled = true;
+    changeSettingsButtons();
     mergeSort(0, arrayOfBars.length - 1, arrayOfBars);
+    setTimeout(restoreButtonSettings, 6000);
+});
 
-})
+/* The funcionality of the button that starts the sorting of the array
+   using quick sort algorithm */
+buttonQuickSort.addEventListener('click', () => {
+    buttonRandomArray.style.backgroundColor = "red";
+    buttonRandomArray.disabled = true;
+    changeSettingsButtons();
+    quickSort(0, arrayOfBars.length - 1, arrayOfBars);
+    setTimeout(restoreButtonSettings, 6000);
+});
+
+
+/* A function that change the setting of buttons */
+const changeSettingsButtons = () => {
+    buttonBubbleSort.disabled = true;
+    buttonMergeSort.disabled = true;
+    buttonInsertionSort.disabled = true;
+    buttonQuickSort.disabled = true;
+}
 
 /* A function that restores the settings of the buttons */
 export const restoreButtonSettings = () => {
     buttonRandomArray.disabled = false;
     buttonRandomArray.style.backgroundColor = "#0d6efd";
-    buttonBubbleSort.disabled = true;
-    buttonMergeSort.disabled = true;
-    buttonInsertionSort.disabled = true;
 }
-

@@ -34,98 +34,97 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { factorHeight } from "../script.js";
+import { speed } from "../script.js";
 import { sleep } from "../script.js";
 import { maxSpeed } from "../script.js";
-import { speed } from "../script.js";
-export function mergeSort(left, right, arrayOfBars) {
+import { factorHeight } from "../script.js";
+export function quickSort(left, right, arrayOfBars) {
     return __awaiter(this, void 0, void 0, function () {
-        var mid;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var bars, pivot, _a, _b, _c, i;
+        return __generator(this, function (_d) {
+            switch (_d.label) {
                 case 0:
+                    bars = document.getElementsByClassName("bar");
                     if (left >= right) {
                         return [2 /*return*/];
                     }
-                    mid = Math.floor((left + right) / 2);
-                    return [4 /*yield*/, mergeSort(left, mid, arrayOfBars)];
-                case 1:
-                    _a.sent();
-                    return [4 /*yield*/, mergeSort(mid + 1, right, arrayOfBars)];
+                    pivot = partition(left, right, arrayOfBars);
+                    _a = quickSort;
+                    _b = [left];
+                    return [4 /*yield*/, pivot];
+                case 1: return [4 /*yield*/, _a.apply(void 0, _b.concat([(_d.sent()) - 1, arrayOfBars]))];
                 case 2:
-                    _a.sent();
-                    return [4 /*yield*/, merge(left, right, arrayOfBars)];
-                case 3:
+                    _d.sent();
+                    _c = quickSort;
+                    return [4 /*yield*/, pivot];
+                case 3: return [4 /*yield*/, _c.apply(void 0, [(_d.sent()) + 1, right, arrayOfBars])];
+                case 4:
+                    _d.sent();
+                    for (i = 0; i < bars.length; ++i) {
+                        bars[i].style.backgroundColor = "red";
+                    }
+                    ;
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function swap(arrayOfBars, i, j, bars) {
+    return __awaiter(this, void 0, void 0, function () {
+        var temp;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    temp = arrayOfBars[i];
+                    arrayOfBars[i] = arrayOfBars[j];
+                    arrayOfBars[j] = temp;
+                    bars[i].style.height = arrayOfBars[i] * factorHeight + "px";
+                    bars[i].style.backgroundColor = "red";
+                    bars[j].style.height = arrayOfBars[j] * factorHeight + "px";
+                    bars[j].style.backgroundColor = "red";
+                    return [4 /*yield*/, sleep(maxSpeed - speed)];
+                case 1:
                     _a.sent();
                     return [2 /*return*/];
             }
         });
     });
 }
-function merge(left, right, arrayOfBars) {
+function partition(left, right, arrayOfBars) {
     return __awaiter(this, void 0, void 0, function () {
-        var bars, mid, leftArray, rightArray, i, j, k, z, i_1;
+        var bars, pivot, k, i, j;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     bars = document.getElementsByClassName("bar");
-                    mid = Math.floor((left + right) / 2);
-                    leftArray = arrayOfBars.slice(left, mid + 1);
-                    rightArray = arrayOfBars.slice(mid + 1, right + 1);
-                    i = 0;
-                    j = 0;
-                    k = left;
-                    _a.label = 1;
-                case 1:
-                    if (!(i < leftArray.length && j < rightArray.length)) return [3 /*break*/, 3];
-                    if (leftArray[i] <= rightArray[j]) {
-                        arrayOfBars[k] = leftArray[i];
-                        i++;
-                    }
-                    else {
-                        arrayOfBars[k] = rightArray[j];
-                        j++;
-                    }
-                    bars[k].style.height = arrayOfBars[k] * factorHeight + "px";
-                    bars[k].style.backgroundColor = "red";
-                    /* change color of different bars */
-                    for (z = 0; z < arrayOfBars.length; ++z) {
-                        if (z != k) {
-                            bars[z].style.backgroundColor = "aqua";
+                    pivot = arrayOfBars[right];
+                    bars[right].style.backgroundColor = "#0b5ed7";
+                    for (k = 0; k < arrayOfBars.length; k++) {
+                        if (k != right) {
+                            bars[k].style.backgroundColor = "aqua";
                         }
                     }
+                    i = left - 1;
+                    j = left;
+                    _a.label = 1;
+                case 1:
+                    if (!(j < right)) return [3 /*break*/, 4];
+                    if (!(arrayOfBars[j] <= pivot)) return [3 /*break*/, 3];
+                    i++;
+                    swap(arrayOfBars, i, j, bars);
                     return [4 /*yield*/, sleep(maxSpeed - speed)];
                 case 2:
                     _a.sent();
-                    k++;
-                    return [3 /*break*/, 1];
+                    _a.label = 3;
                 case 3:
-                    if (!(i < leftArray.length)) return [3 /*break*/, 5];
-                    arrayOfBars[k] = leftArray[i];
-                    bars[k].style.height = arrayOfBars[k] * factorHeight + "px";
-                    bars[k].style.backgroundColor = "red";
-                    return [4 /*yield*/, sleep(maxSpeed - speed)];
-                case 4:
-                    _a.sent();
-                    i++;
-                    k++;
-                    return [3 /*break*/, 3];
-                case 5:
-                    if (!(j < rightArray.length)) return [3 /*break*/, 7];
-                    arrayOfBars[k] = rightArray[j];
-                    bars[k].style.height = arrayOfBars[k] * factorHeight + "px";
-                    bars[k].style.backgroundColor = "red";
-                    return [4 /*yield*/, sleep(maxSpeed - speed)];
-                case 6:
-                    _a.sent();
                     j++;
-                    k++;
-                    return [3 /*break*/, 5];
-                case 7:
-                    for (i_1 = 0; i_1 < bars.length; ++i_1) {
-                        bars[i_1].style.backgroundColor = "red";
-                    }
-                    return [2 /*return*/];
+                    return [3 /*break*/, 1];
+                case 4:
+                    swap(arrayOfBars, i + 1, right, bars);
+                    return [4 /*yield*/, sleep(maxSpeed - speed)];
+                case 5:
+                    _a.sent();
+                    return [2 /*return*/, i + 1];
             }
         });
     });
