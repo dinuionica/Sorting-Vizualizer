@@ -1,125 +1,136 @@
-// get elements from dom
-let buttonRandomArray = document.getElementById("btn_new_array") as HTMLButtonElement | null;
-let rangeSlider = (document.getElementById("range_slider") as HTMLInputElement);
-let rangeSize = (document.getElementById("range_size") as HTMLInputElement);
-let bubbleSortButton = document.getElementById("btn_bubble_sort") as HTMLButtonElement | null;
+/* Importing the algorithms from sorting algorithms files */
+import { bubbleSort } from "./sorting-algorithms/bubble_sort.js";
+import { insertionSort } from "./sorting-algorithms/insertion_sort.js";
+import { mergeSort } from "./sorting-algorithms/merge_sort.js";
+
+/* Getting elements from the DOM */
+export let buttonRandomArray = document.getElementById("btn_new_array") as HTMLButtonElement | null;
+export let buttonBubbleSort = document.getElementById("btn_bubble_sort") as HTMLButtonElement | null;
+export let buttonInsertionSort = document.getElementById("btn_insertion_sort") as HTMLButtonElement | null;
+export let buttonMergeSort = document.getElementById("btn_merge_sort") as HTMLButtonElement | null;
 let barContainters = document.getElementById("container_bars");
+let speedSlider = (document.getElementById("range_slider") as HTMLInputElement);
+let sizeArraySlider = (document.getElementById("range_size") as HTMLInputElement);
 let buttonChangeOrder = document.getElementById("btn_change_order");
 
-// variables used for bars
-const minimumRange = 1;
-const maximumRange = 50;
+/* Variables used for bars animation */
+const minimumRange: number = 1;
+const maximumRange: number = 50;
 let numberOfBars: number = 50;
-let speed: number = 50;
-let AscendingOrder = true;
-let expressionBubbleSort = "arrayOfBars[j] > arrayOfBars[j + 1]"
-
+let AscendingOrder: boolean = true;
 let arrayOfBars: number[] = new Array(numberOfBars);
+export let factorHeight: number = 13;
+export let speed: number = 50;
+export const maxSpeed: number = 100;
+export let expressionBubbleSort: string = "arrayOfBars[j] > arrayOfBars[j + 1]"
+export let expressionInsertionSort: string = "j >= 0 && arrayOfBars[j] > tempValue"
 
-rangeSlider.onchange = function () {
-    speed = parseInt(rangeSlider.value);
-}
-
-rangeSize.onchange = () => {
-    numberOfBars = parseInt(rangeSize.value);
-    console.log(rangeSize.value);
-    // the array of bars
-    arrayOfBars = new Array(numberOfBars);
-
-}
-
-buttonChangeOrder.addEventListener('click', () => {
-    if (AscendingOrder) {
-        AscendingOrder = false;
-        buttonChangeOrder.innerHTML = "Descending Order";
-        expressionBubbleSort = "arrayOfBars[j] > arrayOfBars[j + 1]"
-    } else {
-        AscendingOrder = true;
-        buttonChangeOrder.innerHTML = "Ascending Order";
-        expressionBubbleSort = "arrayOfBars[j] < arrayOfBars[j + 1]"
-    }
-})
-
-
-// A function that creates a random number using two range
-const createRandomNumber = (minimumRange: number, maximumRange: number) => {
-    return Math.floor(Math.random() * (maximumRange - minimumRange) + minimumRange);
-}
-
-// A function that pushes the random numbers to array
-const createRandomArray = () => {
-    for (let i = 0; i < arrayOfBars.length; ++i) {
-        arrayOfBars[i] = createRandomNumber(minimumRange, maximumRange);
-    }
-}
-
-const sleep = (milliseconds) => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
-}
-
+/* Loading the first array of bars */
 document.addEventListener('DOMContentLoaded', () => {
     createRandomArray();
     barContainters.innerHTML = "";
     displayBarsOfArray(arrayOfBars)
 })
 
+/* Getting value of the slider and changing the speed of the sorting */
+speedSlider.onchange = function () {
+    speed = parseInt(speedSlider.value);
+}
 
+/* Getting value of the slider and changing the size of the array */
+sizeArraySlider.onchange = () => {
+    numberOfBars = parseInt(sizeArraySlider.value);
+    arrayOfBars = new Array(numberOfBars);
+
+}
+
+/* The function that creates random number using two limits
+   - minimumRange and maximumRange */
+const createRandomNumber = (minimumRange: number, maximumRange: number) => {
+    return Math.floor(Math.random() * (maximumRange - minimumRange) + minimumRange);
+}
+
+/* The function that the array with random numbers */
+const createRandomArray = () => {
+    for (let i = 0; i < arrayOfBars.length; ++i) {
+        arrayOfBars[i] = createRandomNumber(minimumRange, maximumRange);
+    }
+}
+
+/* The function that adds a delay used for animations */
+export const sleep = (milliseconds: number) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+
+/* The function that display the bars of array generated */
 const displayBarsOfArray = (arrayOfBars: number[]) => {
     for (let i = 0; i < arrayOfBars.length; ++i) {
         let newBar = document.createElement("div");
         newBar.classList.add("bar");
-        newBar.style.height = arrayOfBars[i] * 13 + "px";
+        newBar.style.height = arrayOfBars[i] * factorHeight + "px";
         barContainters.appendChild(newBar);
 
     }
 }
 
+/* The functionality of the button that changes the order of sorting of the array */
+buttonChangeOrder.addEventListener('click', () => {
+    if (AscendingOrder) {
+        AscendingOrder = false;
+        buttonChangeOrder.innerHTML = "Descending Order";
+        expressionBubbleSort = "arrayOfBars[j] > arrayOfBars[j + 1]"
+        expressionInsertionSort = "j >= 0 && arrayOfBars[j] > tempValue"
+    } else {
+        AscendingOrder = true;
+        buttonChangeOrder.innerHTML = "Ascending Order";
+        expressionBubbleSort = "arrayOfBars[j] < arrayOfBars[j + 1]"
+        expressionInsertionSort = "j >= 0 && arrayOfBars[j] < tempValue"
+    }
+})
+
+/* The functionality of the button that generates a new random array */
 buttonRandomArray.addEventListener("click", () => {
     createRandomArray();
     barContainters.innerHTML = "";
     displayBarsOfArray(arrayOfBars);
-    bubbleSortButton.disabled = false;
-    return;
+    buttonBubbleSort.disabled = false;
+    buttonInsertionSort.disabled = false;
+    buttonMergeSort.disabled = false;
 })
 
-
-async function bubbleSort(arrayOfBars: number[]) {
-    let bars = <HTMLScriptElement[]><any>document.getElementsByClassName("bar");
-    for (let i = 0; i < arrayOfBars.length; ++i) {
-        for (let j = 0; j < arrayOfBars.length - 1; ++j) {
-            if (eval(expressionBubbleSort)) {
-                for (let k = 0; k < bars.length; k++) {
-                    if (k !== j && k !== j + 1) {
-                        bars[k].style.backgroundColor = "aqua";
-                    }
-                }
-                let temp = arrayOfBars[j];
-                arrayOfBars[j] = arrayOfBars[j + 1];
-                arrayOfBars[j + 1] = temp;
-                bars[j].style.height = arrayOfBars[j] * 13 + "px";
-                bars[j].style.backgroundColor = "red";
-                bars[j + 1].style.height = arrayOfBars[j + 1] * 13 + "px";
-                bars[j + 1].style.backgroundColor = "red";
-                await sleep(100 - speed);
-            }
-        }
-        await sleep(100 - speed);
-    }
-    for (let i = 0; i < bars.length; ++i) {
-        bars[i].style.backgroundColor = "red";
-    }
-    buttonRandomArray.disabled = false;
-    buttonRandomArray.style.backgroundColor = "#0d6efd";
-    bubbleSortButton.disabled = true;
-    return arrayOfBars;
-}
-
-bubbleSortButton.addEventListener('click', () => {
+/* The functionality of the button that starts the sorting of the array 
+   using bubble sort algorithm */
+buttonBubbleSort.addEventListener('click', () => {
     buttonRandomArray.style.backgroundColor = "red";
     buttonRandomArray.disabled = true;
     bubbleSort(arrayOfBars);
 })
 
+/* The functionality of the button that starts the sorting of the array 
+   using bubble sort algorithm */
+buttonInsertionSort.addEventListener('click', () => {
+    buttonRandomArray.style.backgroundColor = "red";
+    buttonRandomArray.disabled = true;
+    insertionSort(arrayOfBars);
 
+})
 
+/* The funcionality of the button that starts the sorting of the array
+   using merge sort algorithm */
+buttonMergeSort.addEventListener('click', () => {
+    buttonRandomArray.style.backgroundColor = "red";
+    buttonRandomArray.disabled = true;
+    mergeSort(0, arrayOfBars.length - 1, arrayOfBars);
+
+})
+
+/* A function that restores the settings of the buttons */
+export const restoreButtonSettings = () => {
+    buttonRandomArray.disabled = false;
+    buttonRandomArray.style.backgroundColor = "#0d6efd";
+    buttonBubbleSort.disabled = true;
+    buttonMergeSort.disabled = true;
+    buttonInsertionSort.disabled = true;
+}
 

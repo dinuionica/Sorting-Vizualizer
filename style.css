@@ -29,17 +29,17 @@
 	border-radius: 2px;
 }
 
-#btn_bubble_sort {
+.btn-primary{
 	width: 200px;
 	height: 50px;
 	margin: 3px;
 }
 
-#btn_new_array {
-	width: 200px;
-	height: px;
+#btn_change_order {
+	height: 60px;
 	margin: 3px;
 }
+
 
 .bar {
 	width: 12px;
@@ -92,13 +92,13 @@
 	}
 
 	.bar {
-		width: 2px;
+		width: 1px;
 		margin: 0 5px;
 		transition: height 0.5s ease-in-out;
 	}
 }
 
-@media only screen and (min-width:768px) and (max-width: 1200px) {
+@media only screen and (min-width:768px) and (max-width: 1150px) {
 	.buttons_container {
 		display: flex;
 		padding: 5px;
