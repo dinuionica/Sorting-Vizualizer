@@ -38,6 +38,7 @@ import { speed } from "../script.js";
 import { sleep } from "../script.js";
 import { maxSpeed } from "../script.js";
 import { factorHeight } from "../script.js";
+import { expressionQuickSort } from "../script.js";
 export function quickSort(left, right, arrayOfBars) {
     return __awaiter(this, void 0, void 0, function () {
         var bars, pivot, _a, _b, _c, i;
@@ -109,7 +110,7 @@ function partition(left, right, arrayOfBars) {
                     _a.label = 1;
                 case 1:
                     if (!(j < right)) return [3 /*break*/, 4];
-                    if (!(arrayOfBars[j] <= pivot)) return [3 /*break*/, 3];
+                    if (!eval(expressionQuickSort)) return [3 /*break*/, 3];
                     i++;
                     swap(arrayOfBars, i, j, bars);
                     return [4 /*yield*/, sleep(maxSpeed - speed)];

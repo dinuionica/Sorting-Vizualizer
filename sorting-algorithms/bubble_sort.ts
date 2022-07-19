@@ -4,7 +4,7 @@ import { expressionBubbleSort } from "../script.js";
 import { sleep } from "../script.js";
 import { factorHeight } from "../script.js";
 import { maxSpeed } from "../script.js";
-import { restoreButtonSettings } from "../script.js";
+import { restoreButtonNewArraySettings } from "../script.js";
 
 /* The function that sorts the array using bubble sort algorithm 
    and displays the animation using the bars of the array */
@@ -40,5 +40,5 @@ export async function bubbleSort(arrayOfBars: number[]) {
         bars[i].style.backgroundColor = "red";
     }
     /* restore the buttons style and functionality */
-    restoreButtonSettings();
+    restoreButtonNewArraySettings();
 }

@@ -34,70 +34,115 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-/* Imports used for the creation of the insertion sort algorithm */
-import { expressionInsertionSort } from "../script.js";
-import { factorHeight } from "../script.js";
-import { sleep } from "../script.js";
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 import { speed } from "../script.js";
+import { sleep } from "../script.js";
 import { maxSpeed } from "../script.js";
+import { factorHeight } from "../script.js";
 import { restoreButtonNewArraySettings } from "../script.js";
-/* The function that sorts the array using insertion sort algorithm
-   and displays the animation using the bars of the array */
-export function insertionSort(arrayOfBars) {
+var changeColor = function (arr, i, bars) {
+    switch (arr[i] % 10) {
+        case 0:
+            bars[i].style.backgroundColor = "yellow";
+            break;
+        case 1:
+            bars[i].style.backgroundColor = "aqua";
+            break;
+        case 2:
+            bars[i].style.backgroundColor = "blue";
+            break;
+        case 3:
+            bars[i].style.backgroundColor = "green";
+            break;
+        case 4:
+            bars[i].style.backgroundColor = "orange";
+            break;
+        case 5:
+            bars[i].style.backgroundColor = "purple";
+            break;
+        case 6:
+            bars[i].style.backgroundColor = "pink";
+            break;
+        case 7:
+            bars[i].style.backgroundColor = "gold";
+            break;
+        case 8:
+            bars[i].style.backgroundColor = "violet";
+            break;
+        case 9:
+            bars[i].style.backgroundColor = "darkblue";
+            break;
+        default:
+            bars[i].style.backgroundColor = "black";
+            break;
+    }
+};
+export function radixSort(arr) {
     return __awaiter(this, void 0, void 0, function () {
-        var bars, i, j, tempValue, k, i;
+        var bars, maxNum, divisor, buckets, _i, arr_1, num, i, i;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     bars = document.getElementsByClassName("bar");
-                    i = 1;
+                    maxNum = Math.max.apply(Math, arr) * 10;
+                    console.log(maxNum);
+                    divisor = 10;
                     _a.label = 1;
                 case 1:
-                    if (!(i < arrayOfBars.length)) return [3 /*break*/, 7];
-                    j = i - 1;
-                    tempValue = arrayOfBars[i];
+                    if (!(divisor < maxNum)) return [3 /*break*/, 10];
+                    buckets = __spreadArray([], Array(10), true).map(function () { return []; });
+                    _i = 0, arr_1 = arr;
                     _a.label = 2;
                 case 2:
-                    if (!eval(expressionInsertionSort)) return [3 /*break*/, 4];
-                    /* move elements of arrayOfBars that are greater or smaller than tempValue
-                       to one position ahead of their current position */
-                    arrayOfBars[j + 1] = arrayOfBars[j];
-                    bars[j + 1].style.height = arrayOfBars[j + 1] * factorHeight + "px";
-                    bars[j + 1].style.backgroundColor = "red";
-                    /* use a delay to display the animation */
+                    if (!(_i < arr_1.length)) return [3 /*break*/, 5];
+                    num = arr_1[_i];
+                    buckets[Math.floor((num % divisor) / (divisor / 10))].push(num);
+                    bars[arr.indexOf(num)].style.height = num * factorHeight + "px";
+                    bars[arr.indexOf(num)].style.backgroundColor = "red";
                     return [4 /*yield*/, sleep(maxSpeed - speed)];
                 case 3:
-                    /* use a delay to display the animation */
                     _a.sent();
-                    for (k = 0; k < bars.length; k++) {
-                        /* display animation for desired bars */
-                        if (k !== j + 1) {
-                            bars[k].style.backgroundColor = "aqua";
-                        }
-                    }
-                    j--;
-                    return [3 /*break*/, 2];
+                    _a.label = 4;
                 case 4:
-                    arrayOfBars[j + 1] = tempValue;
-                    /* display animation for desired bars */
-                    bars[j + 1].style.height = arrayOfBars[j + 1] * factorHeight + "px";
-                    bars[j + 1].style.backgroundColor = "#0b5ed7";
-                    /* use a delay to display the animation */
-                    return [4 /*yield*/, sleep(maxSpeed - speed)];
+                    _i++;
+                    return [3 /*break*/, 2];
                 case 5:
-                    /* use a delay to display the animation */
-                    _a.sent();
+                    // Reconstruct the array by concatinating all sub arrays
+                    arr = [].concat.apply([], buckets);
+                    i = 0;
                     _a.label = 6;
                 case 6:
-                    ++i;
-                    return [3 /*break*/, 1];
+                    if (!(i < bars.length)) return [3 /*break*/, 9];
+                    bars[i].style.height = arr[i] * factorHeight + "px";
+                    changeColor(arr, i, bars);
+                    return [4 /*yield*/, sleep(maxSpeed - speed)];
                 case 7:
+                    _a.sent();
+                    _a.label = 8;
+                case 8:
+                    ++i;
+                    return [3 /*break*/, 6];
+                case 9:
+                    // Move to the next significant digit
+                    divisor *= 10;
+                    return [3 /*break*/, 1];
+                case 10: return [4 /*yield*/, sleep(maxSpeed - speed)];
+                case 11:
+                    _a.sent();
                     for (i = 0; i < bars.length; ++i) {
                         bars[i].style.backgroundColor = "red";
                     }
                     /* restore the buttons style and functionality */
                     restoreButtonNewArraySettings();
-                    return [2 /*return*/];
+                    return [2 /*return*/, arr];
             }
         });
     });

@@ -4,7 +4,7 @@ import { factorHeight } from "../script.js";
 import { sleep } from "../script.js";
 import { speed } from "../script.js";
 import { maxSpeed } from "../script.js";
-import { restoreButtonSettings } from "../script.js";
+import { restoreButtonNewArraySettings } from "../script.js";
 
 
 /* The function that sorts the array using insertion sort algorithm 
@@ -44,5 +44,5 @@ export async function insertionSort(arrayOfBars: number[]) {
     }
 
     /* restore the buttons style and functionality */
-    restoreButtonSettings();
+    restoreButtonNewArraySettings();
 }

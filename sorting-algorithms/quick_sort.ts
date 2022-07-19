@@ -2,6 +2,7 @@ import { speed } from "../script.js";
 import { sleep } from "../script.js";
 import { maxSpeed } from "../script.js";
 import { factorHeight } from "../script.js";
+import { expressionQuickSort } from "../script.js";
 
 
 export async function quickSort(left: number, right: number, arrayOfBars: number[]) {
@@ -43,7 +44,7 @@ async function partition(left: number, right: number, arrayOfBars: number[]) {
 
     let i = left - 1;
     for (let j = left; j < right; j++) {
-        if (arrayOfBars[j] <= pivot) {
+        if (eval(expressionQuickSort)) {
             i++;
             swap(arrayOfBars, i, j, bars);
             await sleep(maxSpeed - speed);

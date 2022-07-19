@@ -38,6 +38,7 @@ import { factorHeight } from "../script.js";
 import { sleep } from "../script.js";
 import { maxSpeed } from "../script.js";
 import { speed } from "../script.js";
+import { expressionMergeSort } from "../script.js";
 export function mergeSort(left, right, arrayOfBars) {
     return __awaiter(this, void 0, void 0, function () {
         var mid;
@@ -78,7 +79,7 @@ function merge(left, right, arrayOfBars) {
                     _a.label = 1;
                 case 1:
                     if (!(i < leftArray.length && j < rightArray.length)) return [3 /*break*/, 3];
-                    if (leftArray[i] <= rightArray[j]) {
+                    if (eval(expressionMergeSort)) {
                         arrayOfBars[k] = leftArray[i];
                         i++;
                     }

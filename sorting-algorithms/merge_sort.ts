@@ -2,7 +2,7 @@ import { factorHeight } from "../script.js";
 import { sleep } from "../script.js";
 import { maxSpeed } from "../script.js";
 import { speed } from "../script.js";
-
+import { expressionMergeSort } from "../script.js";
 
 export async function mergeSort(left: number, right: number, arrayOfBars: number[]) {
     if (left >= right) {
@@ -23,7 +23,7 @@ async function merge(left: number, right: number, arrayOfBars: number[]) {
     let j = 0;
     let k = left;
     while (i < leftArray.length && j < rightArray.length) {
-        if (leftArray[i] <= rightArray[j]) {
+        if (eval(expressionMergeSort)) {
             arrayOfBars[k] = leftArray[i];
             i++;
         } else {

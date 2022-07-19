@@ -3,6 +3,7 @@ import { bubbleSort } from "./sorting-algorithms/bubble_sort.js";
 import { insertionSort } from "./sorting-algorithms/insertion_sort.js";
 import { mergeSort } from "./sorting-algorithms/merge_sort.js";
 import { quickSort } from "./sorting-algorithms/quick_sort.js";
+import { radixSort } from "./sorting-algorithms/radix_sort.js";
 
 /* Getting elements from the DOM */
 export let buttonRandomArray = document.getElementById("btn_new_array") as HTMLButtonElement | null;
@@ -10,6 +11,7 @@ export let buttonBubbleSort = document.getElementById("btn_bubble_sort") as HTML
 export let buttonInsertionSort = document.getElementById("btn_insertion_sort") as HTMLButtonElement | null;
 export let buttonMergeSort = document.getElementById("btn_merge_sort") as HTMLButtonElement | null;
 export let buttonQuickSort = document.getElementById("btn_quick_sort") as HTMLButtonElement | null;
+export let buttonRadixSort = document.getElementById("btn_radix_sort") as HTMLButtonElement | null;
 let barContainters = document.getElementById("container_bars");
 let speedSlider = (document.getElementById("range_slider") as HTMLInputElement);
 let sizeArraySlider = (document.getElementById("range_size") as HTMLInputElement);
@@ -18,8 +20,8 @@ let buttonChangeOrder = document.getElementById("btn_change_order");
 /* Variables used for bars animation */
 const minimumRange: number = 1;
 const maximumRange: number = 50;
-let numberOfBars: number = 50;
-let sorted = true;
+let numberOfBars: number = 70;
+let timeOutValue: number = 6000;
 let AscendingOrder: boolean = true;
 let arrayOfBars: number[] = new Array(numberOfBars);
 export let factorHeight: number = 13;
@@ -27,6 +29,9 @@ export let speed: number = 50;
 export const maxSpeed: number = 100;
 export let expressionBubbleSort: string = "arrayOfBars[j] > arrayOfBars[j + 1]"
 export let expressionInsertionSort: string = "j >= 0 && arrayOfBars[j] > tempValue"
+export let expressionMergeSort: string = "leftArray[i] <= rightArray[j]"
+export let expressionQuickSort: string = "arrayOfBars[j] <= pivot"
+
 
 /* Loading the first array of bars */
 document.addEventListener('DOMContentLoaded', () => {
@@ -81,14 +86,23 @@ const displayBarsOfArray = (arrayOfBars: number[]) => {
 buttonChangeOrder.addEventListener('click', () => {
     if (AscendingOrder) {
         AscendingOrder = false;
-        buttonChangeOrder.innerHTML = "Descending Order";
+        buttonChangeOrder.innerHTML = "Descending";
         expressionBubbleSort = "arrayOfBars[j] > arrayOfBars[j + 1]"
         expressionInsertionSort = "j >= 0 && arrayOfBars[j] > tempValue"
+        expressionMergeSort = "leftArray[i] <= rightArray[j]";
+        expressionQuickSort = "arrayOfBars[j] <= pivot";
+        buttonChangeOrder.style.backgroundColor = "white";
+        buttonChangeOrder.style.color = "#0d6efd";
+
     } else {
         AscendingOrder = true;
-        buttonChangeOrder.innerHTML = "Ascending Order";
+        buttonChangeOrder.innerHTML = "Ascending";
         expressionBubbleSort = "arrayOfBars[j] < arrayOfBars[j + 1]"
         expressionInsertionSort = "j >= 0 && arrayOfBars[j] < tempValue"
+        expressionMergeSort = "leftArray[i] >= rightArray[j]";
+        expressionQuickSort = "arrayOfBars[j] >= pivot";
+        buttonChangeOrder.style.backgroundColor = "#0d6efd";
+        buttonChangeOrder.style.color = "white";
     }
 })
 
@@ -101,6 +115,7 @@ buttonRandomArray.addEventListener("click", () => {
     buttonInsertionSort.disabled = false;
     buttonMergeSort.disabled = false;
     buttonQuickSort.disabled = false;
+    buttonRadixSort.disabled = false;
 })
 
 /* The functionality of the button that starts the sorting of the array 
@@ -128,7 +143,7 @@ buttonMergeSort.addEventListener('click', () => {
     buttonRandomArray.disabled = true;
     changeSettingsButtons();
     mergeSort(0, arrayOfBars.length - 1, arrayOfBars);
-    setTimeout(restoreButtonSettings, 6000);
+    setTimeout(restoreButtonNewArraySettings, timeOutValue);
 });
 
 /* The funcionality of the button that starts the sorting of the array
@@ -138,9 +153,17 @@ buttonQuickSort.addEventListener('click', () => {
     buttonRandomArray.disabled = true;
     changeSettingsButtons();
     quickSort(0, arrayOfBars.length - 1, arrayOfBars);
-    setTimeout(restoreButtonSettings, 6000);
+    setTimeout(restoreButtonNewArraySettings, timeOutValue);
 });
 
+/* The funcionality of the button that starts the sorting of the array
+   using radix sort algorithm */
+buttonRadixSort.addEventListener('click', () => {
+    buttonRandomArray.style.backgroundColor = "red";
+    buttonRandomArray.disabled = true;
+    changeSettingsButtons();
+    radixSort(arrayOfBars);
+});
 
 /* A function that change the setting of buttons */
 const changeSettingsButtons = () => {
@@ -148,10 +171,11 @@ const changeSettingsButtons = () => {
     buttonMergeSort.disabled = true;
     buttonInsertionSort.disabled = true;
     buttonQuickSort.disabled = true;
+    buttonRadixSort.disabled = true;
 }
 
 /* A function that restores the settings of the buttons */
-export const restoreButtonSettings = () => {
+export const restoreButtonNewArraySettings = () => {
     buttonRandomArray.disabled = false;
     buttonRandomArray.style.backgroundColor = "#0d6efd";
 }

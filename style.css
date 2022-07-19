@@ -36,13 +36,15 @@
 }
 
 #btn_change_order {
-	height: 60px;
+	text-align: center;
+	width: 150px;
+	height: 40px;
 	margin: 3px;
 }
 
 
 .bar {
-	width: 12px;
+	width: 9px;
 	border: 1px solid lightcyan;
 	margin: 0 5px;
 	transition: height 0.5s ease-in-out;
@@ -78,7 +80,7 @@
 }
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 850px) {
 
 	.text-logo {
 		text-align: center;
@@ -95,7 +97,7 @@
 	.ranges-div {
 		display: flex;
 		flex-direction: column;
-		padding: 20px;
+		padding: 50px;
 	}
 
 	.bar {
