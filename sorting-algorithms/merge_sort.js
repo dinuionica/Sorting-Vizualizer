@@ -34,35 +34,44 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+/* Imports used for the creation of the merge sort algorithm */
 import { factorHeight } from "../script.js";
 import { sleep } from "../script.js";
 import { maxSpeed } from "../script.js";
 import { speed } from "../script.js";
 import { expressionMergeSort } from "../script.js";
+/* The function that sorts the array using merge sort algorithm
+   and displays the animation using the bars of the array */
 export function mergeSort(left, right, arrayOfBars) {
     return __awaiter(this, void 0, void 0, function () {
         var mid;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    /* the base case */
                     if (left >= right) {
                         return [2 /*return*/];
                     }
                     mid = Math.floor((left + right) / 2);
+                    /* recursively call the mergeSort function on the left and right halves of the array */
                     return [4 /*yield*/, mergeSort(left, mid, arrayOfBars)];
                 case 1:
+                    /* recursively call the mergeSort function on the left and right halves of the array */
                     _a.sent();
                     return [4 /*yield*/, mergeSort(mid + 1, right, arrayOfBars)];
                 case 2:
                     _a.sent();
+                    /* merge the two halves of the array */
                     return [4 /*yield*/, merge(left, right, arrayOfBars)];
                 case 3:
+                    /* merge the two halves of the array */
                     _a.sent();
                     return [2 /*return*/];
             }
         });
     });
 }
+/* The function that merges the two halves of the array */
 function merge(left, right, arrayOfBars) {
     return __awaiter(this, void 0, void 0, function () {
         var bars, mid, leftArray, rightArray, i, j, k, z, i_1;
@@ -79,6 +88,7 @@ function merge(left, right, arrayOfBars) {
                     _a.label = 1;
                 case 1:
                     if (!(i < leftArray.length && j < rightArray.length)) return [3 /*break*/, 3];
+                    /* sorting ascending or descending by expression determinded */
                     if (eval(expressionMergeSort)) {
                         arrayOfBars[k] = leftArray[i];
                         i++;
@@ -87,6 +97,7 @@ function merge(left, right, arrayOfBars) {
                         arrayOfBars[k] = rightArray[j];
                         j++;
                     }
+                    /* display animation for desired bars */
                     bars[k].style.height = arrayOfBars[k] * factorHeight + "px";
                     bars[k].style.backgroundColor = "red";
                     /* change color of different bars */
@@ -95,8 +106,10 @@ function merge(left, right, arrayOfBars) {
                             bars[z].style.backgroundColor = "aqua";
                         }
                     }
+                    /* use a delay to display the animation */
                     return [4 /*yield*/, sleep(maxSpeed - speed)];
                 case 2:
+                    /* use a delay to display the animation */
                     _a.sent();
                     k++;
                     return [3 /*break*/, 1];
@@ -123,6 +136,7 @@ function merge(left, right, arrayOfBars) {
                     k++;
                     return [3 /*break*/, 5];
                 case 7:
+                    /* change color of the bars */
                     for (i_1 = 0; i_1 < bars.length; ++i_1) {
                         bars[i_1].style.backgroundColor = "red";
                     }

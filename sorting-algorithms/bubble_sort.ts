@@ -39,6 +39,7 @@ export async function bubbleSort(arrayOfBars: number[]) {
     for (let i = 0; i < bars.length; ++i) {
         bars[i].style.backgroundColor = "red";
     }
+
     /* restore the buttons style and functionality */
     restoreButtonNewArraySettings();
 }

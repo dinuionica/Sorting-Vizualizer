@@ -1,10 +1,12 @@
+/* Imports used for the creation of the radiox sort algorithm */
 import { speed } from "../script.js";
 import { sleep } from "../script.js";
 import { maxSpeed } from "../script.js";
 import { factorHeight } from "../script.js";
 import { restoreButtonNewArraySettings } from "../script.js";
 
-
+/* The function that changes the color of the bars depending 
+    on the queue in which a number is in the sorting process */
 const changeColor = (arr: number[], i: number, bars: HTMLScriptElement[]) => {
     switch (arr[i] % 10) {
         case 0:
@@ -43,42 +45,46 @@ const changeColor = (arr: number[], i: number, bars: HTMLScriptElement[]) => {
     }
 }
 
-export async function radixSort(arr) {
+/* The function that sorts the array using radix sort algorithm 
+   and displays the animation using the bars of the array */
+export async function radixSort(arrayOfBars) {
     let bars = <HTMLScriptElement[]><any>document.getElementsByClassName("bar");
-    // Find the max number and multiply it by 10 to get a number
-    // with no. of digits of max + 1
-    const maxNum = Math.max(...arr) * 10;
-    console.log(maxNum);
+    /* Find the max number and multiply it by 10 */
+    const maximNumber = Math.max(...arrayOfBars) * 10;
+    console.log(maximNumber);
     let divisor = 10;
-    while (divisor < maxNum) {
-        // Create bucket arrays for each of 0-9
+    while (divisor < maximNumber) {
+        /* create bucket arrays for each of 0-9 */
         let buckets = [...Array(10)].map(() => []);
-        // For each number, get the current significant digit and put it in the respective bucket
-        for (let num of arr) {
+        /* get the current significant digit and push it in the desired bucket */
+        for (let num of arrayOfBars) {
             buckets[Math.floor((num % divisor) / (divisor / 10))].push(num);
-            bars[arr.indexOf(num)].style.height = num * factorHeight + "px";
-            bars[arr.indexOf(num)].style.backgroundColor = "red";
-
+            /* display animation for desired bars */
+            bars[arrayOfBars.indexOf(num)].style.height = num * factorHeight + "px";
+            bars[arrayOfBars.indexOf(num)].style.backgroundColor = "red";
+            /* change color of different bars */
             await sleep(maxSpeed - speed);
 
         }
-        // Reconstruct the array by concatinating all sub arrays
-        arr = [].concat.apply([], buckets);
+        /* reconstruct the array by concatinating all the buckets */
+        arrayOfBars = [].concat.apply([], buckets);
         for (let i = 0; i < bars.length; ++i) {
-            bars[i].style.height = arr[i] * factorHeight + "px";
-            changeColor(arr, i, bars);
+            bars[i].style.height = arrayOfBars[i] * factorHeight + "px";
+            changeColor(arrayOfBars, i, bars);
             await sleep(maxSpeed - speed);
         }
 
-        // Move to the next significant digit
+        /* acces the next significant digit */
         divisor *= 10;
     }
     await sleep(maxSpeed - speed);
+    /* change the color of the bars */
     for (let i = 0; i < bars.length; ++i) {
         bars[i].style.backgroundColor = "red";
     }
+
     /* restore the buttons style and functionality */
     restoreButtonNewArraySettings();
 
-    return arr;
+    return arrayOfBars;
 }

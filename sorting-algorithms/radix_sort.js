@@ -43,11 +43,14 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
+/* Imports used for the creation of the radiox sort algorithm */
 import { speed } from "../script.js";
 import { sleep } from "../script.js";
 import { maxSpeed } from "../script.js";
 import { factorHeight } from "../script.js";
 import { restoreButtonNewArraySettings } from "../script.js";
+/* The function that changes the color of the bars depending
+    on the queue in which a number is in the sorting process */
 var changeColor = function (arr, i, bars) {
     switch (arr[i] % 10) {
         case 0:
@@ -85,44 +88,49 @@ var changeColor = function (arr, i, bars) {
             break;
     }
 };
-export function radixSort(arr) {
+/* The function that sorts the array using radix sort algorithm
+   and displays the animation using the bars of the array */
+export function radixSort(arrayOfBars) {
     return __awaiter(this, void 0, void 0, function () {
-        var bars, maxNum, divisor, buckets, _i, arr_1, num, i, i;
+        var bars, maximNumber, divisor, buckets, _i, arrayOfBars_1, num, i, i;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     bars = document.getElementsByClassName("bar");
-                    maxNum = Math.max.apply(Math, arr) * 10;
-                    console.log(maxNum);
+                    maximNumber = Math.max.apply(Math, arrayOfBars) * 10;
+                    console.log(maximNumber);
                     divisor = 10;
                     _a.label = 1;
                 case 1:
-                    if (!(divisor < maxNum)) return [3 /*break*/, 10];
+                    if (!(divisor < maximNumber)) return [3 /*break*/, 10];
                     buckets = __spreadArray([], Array(10), true).map(function () { return []; });
-                    _i = 0, arr_1 = arr;
+                    _i = 0, arrayOfBars_1 = arrayOfBars;
                     _a.label = 2;
                 case 2:
-                    if (!(_i < arr_1.length)) return [3 /*break*/, 5];
-                    num = arr_1[_i];
+                    if (!(_i < arrayOfBars_1.length)) return [3 /*break*/, 5];
+                    num = arrayOfBars_1[_i];
                     buckets[Math.floor((num % divisor) / (divisor / 10))].push(num);
-                    bars[arr.indexOf(num)].style.height = num * factorHeight + "px";
-                    bars[arr.indexOf(num)].style.backgroundColor = "red";
+                    /* display animation for desired bars */
+                    bars[arrayOfBars.indexOf(num)].style.height = num * factorHeight + "px";
+                    bars[arrayOfBars.indexOf(num)].style.backgroundColor = "red";
+                    /* change color of different bars */
                     return [4 /*yield*/, sleep(maxSpeed - speed)];
                 case 3:
+                    /* change color of different bars */
                     _a.sent();
                     _a.label = 4;
                 case 4:
                     _i++;
                     return [3 /*break*/, 2];
                 case 5:
-                    // Reconstruct the array by concatinating all sub arrays
-                    arr = [].concat.apply([], buckets);
+                    /* reconstruct the array by concatinating all the buckets */
+                    arrayOfBars = [].concat.apply([], buckets);
                     i = 0;
                     _a.label = 6;
                 case 6:
                     if (!(i < bars.length)) return [3 /*break*/, 9];
-                    bars[i].style.height = arr[i] * factorHeight + "px";
-                    changeColor(arr, i, bars);
+                    bars[i].style.height = arrayOfBars[i] * factorHeight + "px";
+                    changeColor(arrayOfBars, i, bars);
                     return [4 /*yield*/, sleep(maxSpeed - speed)];
                 case 7:
                     _a.sent();
@@ -131,18 +139,19 @@ export function radixSort(arr) {
                     ++i;
                     return [3 /*break*/, 6];
                 case 9:
-                    // Move to the next significant digit
+                    /* acces the next significant digit */
                     divisor *= 10;
                     return [3 /*break*/, 1];
                 case 10: return [4 /*yield*/, sleep(maxSpeed - speed)];
                 case 11:
                     _a.sent();
+                    /* change the color of the bars */
                     for (i = 0; i < bars.length; ++i) {
                         bars[i].style.backgroundColor = "red";
                     }
                     /* restore the buttons style and functionality */
                     restoreButtonNewArraySettings();
-                    return [2 /*return*/, arr];
+                    return [2 /*return*/, arrayOfBars];
             }
         });
     });

@@ -34,11 +34,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+/* Imports used for the creation of the quick sort algorithm */
 import { speed } from "../script.js";
 import { sleep } from "../script.js";
 import { maxSpeed } from "../script.js";
 import { factorHeight } from "../script.js";
 import { expressionQuickSort } from "../script.js";
+/* The function that sorts the array using quick sort algorithm
+   and displays the animation using the bars of the array */
 export function quickSort(left, right, arrayOfBars) {
     return __awaiter(this, void 0, void 0, function () {
         var bars, pivot, _a, _b, _c, i;
@@ -46,6 +49,7 @@ export function quickSort(left, right, arrayOfBars) {
             switch (_d.label) {
                 case 0:
                     bars = document.getElementsByClassName("bar");
+                    /* the base case */
                     if (left >= right) {
                         return [2 /*return*/];
                     }
@@ -53,14 +57,18 @@ export function quickSort(left, right, arrayOfBars) {
                     _a = quickSort;
                     _b = [left];
                     return [4 /*yield*/, pivot];
-                case 1: return [4 /*yield*/, _a.apply(void 0, _b.concat([(_d.sent()) - 1, arrayOfBars]))];
+                case 1: 
+                /* recursively call the quickSort function on the left and right halves of the array */
+                return [4 /*yield*/, _a.apply(void 0, _b.concat([(_d.sent()) - 1, arrayOfBars]))];
                 case 2:
+                    /* recursively call the quickSort function on the left and right halves of the array */
                     _d.sent();
                     _c = quickSort;
                     return [4 /*yield*/, pivot];
                 case 3: return [4 /*yield*/, _c.apply(void 0, [(_d.sent()) + 1, right, arrayOfBars])];
                 case 4:
                     _d.sent();
+                    /* display animation for desired bars */
                     for (i = 0; i < bars.length; ++i) {
                         bars[i].style.backgroundColor = "red";
                     }
@@ -70,6 +78,7 @@ export function quickSort(left, right, arrayOfBars) {
         });
     });
 }
+/* The function that swaps the two elements of the array */
 function swap(arrayOfBars, i, j, bars) {
     return __awaiter(this, void 0, void 0, function () {
         var temp;
@@ -79,18 +88,22 @@ function swap(arrayOfBars, i, j, bars) {
                     temp = arrayOfBars[i];
                     arrayOfBars[i] = arrayOfBars[j];
                     arrayOfBars[j] = temp;
+                    /* display animation for desired bars */
                     bars[i].style.height = arrayOfBars[i] * factorHeight + "px";
                     bars[i].style.backgroundColor = "red";
                     bars[j].style.height = arrayOfBars[j] * factorHeight + "px";
                     bars[j].style.backgroundColor = "red";
+                    /* change color of different bars */
                     return [4 /*yield*/, sleep(maxSpeed - speed)];
                 case 1:
+                    /* change color of different bars */
                     _a.sent();
                     return [2 /*return*/];
             }
         });
     });
 }
+/* The function that calculates the pivot of the array and sort partion */
 function partition(left, right, arrayOfBars) {
     return __awaiter(this, void 0, void 0, function () {
         var bars, pivot, k, i, j;
@@ -99,6 +112,7 @@ function partition(left, right, arrayOfBars) {
                 case 0:
                     bars = document.getElementsByClassName("bar");
                     pivot = arrayOfBars[right];
+                    /* display animation for desired bars */
                     bars[right].style.backgroundColor = "#0b5ed7";
                     for (k = 0; k < arrayOfBars.length; k++) {
                         if (k != right) {
@@ -112,6 +126,7 @@ function partition(left, right, arrayOfBars) {
                     if (!(j < right)) return [3 /*break*/, 4];
                     if (!eval(expressionQuickSort)) return [3 /*break*/, 3];
                     i++;
+                    /* swap the elements of index i and j of the array */
                     swap(arrayOfBars, i, j, bars);
                     return [4 /*yield*/, sleep(maxSpeed - speed)];
                 case 2:
@@ -121,6 +136,7 @@ function partition(left, right, arrayOfBars) {
                     j++;
                     return [3 /*break*/, 1];
                 case 4:
+                    /* swap the pivot with the element at index i + 1 */
                     swap(arrayOfBars, i + 1, right, bars);
                     return [4 /*yield*/, sleep(maxSpeed - speed)];
                 case 5:

@@ -20,9 +20,21 @@ let buttonChangeOrder = document.getElementById("btn_change_order");
 /* Variables used for bars animation */
 const minimumRange: number = 1;
 const maximumRange: number = 50;
-let numberOfBars: number = 70;
+let numberOfBars: number = 0;
 let timeOutValue: number = 6000;
 let AscendingOrder: boolean = true;
+
+/* Change the number of bars using max-width resolution of device */
+var mediaQuery = window.matchMedia("(max-width: 850px)");
+if (mediaQuery.matches) {
+    // window width is at less than 850px
+    numberOfBars = 30;
+}
+else {
+    // window width is greater than 850px
+    numberOfBars = 70;
+}
+
 let arrayOfBars: number[] = new Array(numberOfBars);
 export let factorHeight: number = 13;
 export let speed: number = 50;
@@ -31,7 +43,6 @@ export let expressionBubbleSort: string = "arrayOfBars[j] > arrayOfBars[j + 1]"
 export let expressionInsertionSort: string = "j >= 0 && arrayOfBars[j] > tempValue"
 export let expressionMergeSort: string = "leftArray[i] <= rightArray[j]"
 export let expressionQuickSort: string = "arrayOfBars[j] <= pivot"
-
 
 /* Loading the first array of bars */
 document.addEventListener('DOMContentLoaded', () => {
@@ -87,20 +98,24 @@ buttonChangeOrder.addEventListener('click', () => {
     if (AscendingOrder) {
         AscendingOrder = false;
         buttonChangeOrder.innerHTML = "Descending";
+        /* expression used for a descending order */
         expressionBubbleSort = "arrayOfBars[j] > arrayOfBars[j + 1]"
         expressionInsertionSort = "j >= 0 && arrayOfBars[j] > tempValue"
         expressionMergeSort = "leftArray[i] <= rightArray[j]";
         expressionQuickSort = "arrayOfBars[j] <= pivot";
+        /* change the button style for a descending order */
         buttonChangeOrder.style.backgroundColor = "white";
         buttonChangeOrder.style.color = "#0d6efd";
 
     } else {
         AscendingOrder = true;
         buttonChangeOrder.innerHTML = "Ascending";
+        /* expression used for an ascending order */
         expressionBubbleSort = "arrayOfBars[j] < arrayOfBars[j + 1]"
         expressionInsertionSort = "j >= 0 && arrayOfBars[j] < tempValue"
         expressionMergeSort = "leftArray[i] >= rightArray[j]";
         expressionQuickSort = "arrayOfBars[j] >= pivot";
+        /* change the button style for an ascending order */
         buttonChangeOrder.style.backgroundColor = "#0d6efd";
         buttonChangeOrder.style.color = "white";
     }
@@ -165,7 +180,7 @@ buttonRadixSort.addEventListener('click', () => {
     radixSort(arrayOfBars);
 });
 
-/* A function that change the setting of buttons */
+/* A function that change the setting of buttons (display) */
 const changeSettingsButtons = () => {
     buttonBubbleSort.disabled = true;
     buttonMergeSort.disabled = true;
@@ -174,7 +189,8 @@ const changeSettingsButtons = () => {
     buttonRadixSort.disabled = true;
 }
 
-/* A function that restores the settings of the buttons */
+/* A function that restores the settings of the button
+   that generate a new array of numbers */
 export const restoreButtonNewArraySettings = () => {
     buttonRandomArray.disabled = false;
     buttonRandomArray.style.backgroundColor = "#0d6efd";

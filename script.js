@@ -18,9 +18,19 @@ var buttonChangeOrder = document.getElementById("btn_change_order");
 /* Variables used for bars animation */
 var minimumRange = 1;
 var maximumRange = 50;
-var numberOfBars = 70;
+var numberOfBars = 0;
 var timeOutValue = 6000;
 var AscendingOrder = true;
+/* Change the number of bars using max-width resolution of device */
+var mediaQuery = window.matchMedia("(max-width: 850px)");
+if (mediaQuery.matches) {
+    // window width is at less than 850px
+    numberOfBars = 30;
+}
+else {
+    // window width is greater than 850px
+    numberOfBars = 70;
+}
 var arrayOfBars = new Array(numberOfBars);
 export var factorHeight = 13;
 export var speed = 50;
@@ -73,20 +83,24 @@ buttonChangeOrder.addEventListener('click', function () {
     if (AscendingOrder) {
         AscendingOrder = false;
         buttonChangeOrder.innerHTML = "Descending";
+        /* expression used for a descending order */
         expressionBubbleSort = "arrayOfBars[j] > arrayOfBars[j + 1]";
         expressionInsertionSort = "j >= 0 && arrayOfBars[j] > tempValue";
         expressionMergeSort = "leftArray[i] <= rightArray[j]";
         expressionQuickSort = "arrayOfBars[j] <= pivot";
+        /* change the button style for a descending order */
         buttonChangeOrder.style.backgroundColor = "white";
         buttonChangeOrder.style.color = "#0d6efd";
     }
     else {
         AscendingOrder = true;
         buttonChangeOrder.innerHTML = "Ascending";
+        /* expression used for an ascending order */
         expressionBubbleSort = "arrayOfBars[j] < arrayOfBars[j + 1]";
         expressionInsertionSort = "j >= 0 && arrayOfBars[j] < tempValue";
         expressionMergeSort = "leftArray[i] >= rightArray[j]";
         expressionQuickSort = "arrayOfBars[j] >= pivot";
+        /* change the button style for an ascending order */
         buttonChangeOrder.style.backgroundColor = "#0d6efd";
         buttonChangeOrder.style.color = "white";
     }
@@ -144,7 +158,7 @@ buttonRadixSort.addEventListener('click', function () {
     changeSettingsButtons();
     radixSort(arrayOfBars);
 });
-/* A function that change the setting of buttons */
+/* A function that change the setting of buttons (display) */
 var changeSettingsButtons = function () {
     buttonBubbleSort.disabled = true;
     buttonMergeSort.disabled = true;
@@ -152,7 +166,8 @@ var changeSettingsButtons = function () {
     buttonQuickSort.disabled = true;
     buttonRadixSort.disabled = true;
 };
-/* A function that restores the settings of the buttons */
+/* A function that restores the settings of the button
+   that generate a new array of numbers */
 export var restoreButtonNewArraySettings = function () {
     buttonRandomArray.disabled = false;
     buttonRandomArray.style.backgroundColor = "#0d6efd";
