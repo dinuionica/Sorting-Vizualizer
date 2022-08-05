@@ -41,7 +41,21 @@ for step in array_size
 * Space Complexity: O(1)
 
 ### Insertion Sort
-Implemented the simplest sorting algorithms that works by swapping between two adjacent elements, if they are not in the desired order (ascending or descending). This algorithm is not suitable for large data sets.
+Implemented another simplest sorting algorithms, an algorithm that works with two parts of the array : unosorted or sorted part. An element of
+unsorted part is picked and then is inserted in the desired position of sorted part of the array.
+
+### Pseudocode: 
+```
+for i in array_size
+  key is equla with array[i]
+  j is i - 1
+  while j is greater that 0 and key is small that array[j]
+  array[j + 1] is equal with array[j]
+  j is decrementing
+  array[j + 1] is equal with the desired key
+  
+  return the final array
+```
 
 #### Complexity
 * Time Complexity : O(n ^ 2)
