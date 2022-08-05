@@ -47,7 +47,7 @@ unsorted part is picked and then is inserted in the desired position of sorted p
 ### Pseudocode: 
 ```
 for i in array_size
-  key is equla with array[i]
+  key is equal with array[i]
   j is i - 1
   while j is greater that 0 and key is small that array[j]
   array[j + 1] is equal with array[j]
