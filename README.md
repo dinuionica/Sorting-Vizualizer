@@ -1,6 +1,6 @@
 # Sorting-Algorithms-Vizualizer
 
-## The contents of the repo:
+##  Repository Content:
 
  - sorting-algorithms/    - the implementation of different algorithms used for the sorting process
  - script.ts/script.js    - the files that containt the main functionality of the project
