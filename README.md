@@ -67,7 +67,7 @@ the left and rigth part of the array and in the final it merges the two parts in
 
 ### Pseudocode: 
 ```
-  if the left index is small than right index
+  if the left index is small that right index
   calculate the mid as (left + right) / 2
   call recursive mergeSort for the left part mergeSort(array, left, mid)
   call recursive mergeSort for the right part mergeSort(array, mid + 1, right)
