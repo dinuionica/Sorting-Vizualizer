@@ -31,3 +31,11 @@ Implemented the simplest sorting algorithms that works by swapping between two a
 #### Complexity
 * Time Complexity : O(n ^ 2)
 * Space Complexity: O(1)
+
+### Insertion Sort
+Implemented the simplest sorting algorithms that works by swapping between two adjacent elements, if they are not in the desired order (ascending or descending). This algorithm is not suitable for large data sets.
+
+#### Complexity
+* Time Complexity : O(n ^ 2)
+* Space Complexity: O(1)
+
