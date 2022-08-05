@@ -61,3 +61,20 @@ for i in array_size
 * Time Complexity : O(n ^ 2)
 * Space Complexity: O(1)
 
+### Merge Sort
+Implemented the merge sort algorithm witch is an efficient algorithms because it divides the inital array in two parts, it sort every part,
+the left and rigth part of the array and in the final it merges the two parts in the sorted result array.
+
+### Pseudocode: 
+```
+  if the left index is small than right index
+  calculate the mid as (left + right) / 2
+  call recursivie mergeSort for the left part mergeSort(array, left, mid)
+  call recursivie mergeSort for the right part mergeSort(array, mid + 1, right)
+  merge the two parts and return the final array
+```
+
+#### Complexity
+* Time Complexity : O(n * log(n))
+* Space Complexity: O(n)
+
