@@ -13,23 +13,14 @@ This project represent a web application created using TypeScript for visualizat
 Among the algorithms implemented are **Bubble Sort , Insertion Sort, Merge Sort, Quick Sort, Radix Sort**. Within the project,
 a series of functionalities were also created, such as changing the size of the array, increasing the specific speed of sorting
  
-## Engine
+## Run the application
 
-Pentru a compila engine-ul jocului:
+To compile the main typescript file
 
 ### Linux: 
 ```
-cd environment
-make
+tsc --module es2022 script.ts
 ```
-
-### Windows:
-
-```
-cd environment
-make.bat
-```
-
 ## Rularea agentilor
 
 In interiorul starter packages veti gasi un runGame.sh / runGame.bat, cu ajutorul carora puteti rula un meci (nu uitati sa copiati engine-ul jocului).
