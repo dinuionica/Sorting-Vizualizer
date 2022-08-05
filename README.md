@@ -29,5 +29,5 @@ tsc --module es2022 script.ts
 Implemented the simplest sorting algorithms that works by swapping between two adjacent elements, if they are not in the desired order (ascending or descending). This algorithm is not suitable for large data sets.
 
 #### Complexity
-* Time Complexity : \(E=mc^2\)
+* Time Complexity : O(n ^ 2)
 * Space Complexity: O(1)
