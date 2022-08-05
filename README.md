@@ -1,5 +1,6 @@
 # Sorting-Algorithms-Vizualizer
 
+https://dinuionica.github.io/Sorting-Vizualizer/
 ##  Repository Content:
 
  - sorting-algorithms/    - the implementation of different algorithms used for the sorting process
@@ -21,7 +22,7 @@ To compile the main typescript file
 ```
 tsc --module es2022 script.ts
 ```
-## Rularea agentilor
+## The Implementation
 
 In interiorul starter packages veti gasi un runGame.sh / runGame.bat, cu ajutorul carora puteti rula un meci (nu uitati sa copiati engine-ul jocului).
 Mai multe detalii despre engine cli gasiti [aici](https://2016.halite.io/advanced_command_line.html).
