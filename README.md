@@ -2,13 +2,14 @@
 
 ## The contents of the repo:
 
- - sorting-algorithms/    - the sorting algorithms used for application
- - environment/         - engine-ul jocului
- - bots/                - folder cu botii pusi la dispozitie de echipa de PA
+ - sorting-algorithms/    - the implementation of different algorithms used for the sorting process
+ - script.ts/script.js    - the files that containts the main functionality of the project
+ - index.html             - the html root file of the project
+ - style.css              - the file that contains the style for the project
 
-## Regulile jocului
+## The idea of the project
 
-Regulile jocului pot fi gasite [aici](https://2016.halite.io/rules_game.html)
+This project represent a web application created using TypeScript for visualization of different sorting algorithms. 
  
 ## Engine
 
