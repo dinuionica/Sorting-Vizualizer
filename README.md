@@ -27,7 +27,15 @@ tsc --module es2022 script.ts
 
 ### Bubble Sort
 Implemented the simplest sorting algorithms that works by swapping between two adjacent elements, if they are not in the desired order (ascending or descending). This algorithm is not suitable for large data sets.
-
+### Pseudocode: 
+```
+for step in array_size
+  for j in array_size - i - 1
+   if array[j] and array[j + 1] are not in the desired order
+   swap array[j] with array[j + 1]
+  
+ return the final array
+```
 #### Complexity
 * Time Complexity : O(n ^ 2)
 * Space Complexity: O(1)
