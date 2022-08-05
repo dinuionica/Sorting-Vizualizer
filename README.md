@@ -3,13 +3,15 @@
 ## The contents of the repo:
 
  - sorting-algorithms/    - the implementation of different algorithms used for the sorting process
- - script.ts/script.js    - the files that containts the main functionality of the project
+ - script.ts/script.js    - the files that containt the main functionality of the project
  - index.html             - the html root file of the project
  - style.css              - the file that contains the style for the project
 
 ## The idea of the project
 
 This project represent a web application created using TypeScript for visualization of different sorting algorithms. 
+Among the algorithms implemented are Bubble Sort, Insertion Sort, Merge Sort, Quick Sort, Radix Sort. Within the project,
+a series of functionalities were also created, such as changing the size of the array, increasing the specific speed of sorting
  
 ## Engine
 
