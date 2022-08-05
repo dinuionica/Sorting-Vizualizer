@@ -7,6 +7,7 @@ https://dinuionica.github.io/Sorting-Vizualizer/
  - script.ts/script.js    - the files that containt the main functionality of the project
  - index.html             - the html root file of the project
  - style.css              - the file that contains the style for the project
+ - tsconfig.js            - the file with all typescript setting for compile
 
 ## The idea of the project
 
