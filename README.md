@@ -26,3 +26,4 @@ tsc --module es2022 script.ts
 ## The Implementation
 
 ### Bubble Sort
+Implemented the simplest sorting algorithms that works by swapping between two adjacent elements, if they are not in the desired order (ascending or descending)
