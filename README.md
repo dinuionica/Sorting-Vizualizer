@@ -109,19 +109,22 @@ Implemented the quick sort algorithm, the most used and efficient algorithm. The
 * Space Complexity: O(1)
 
 ## Radix Sort
-Implemented the radix sort
+Implemented the Radix Sort that is a sorting algorithm that takes into account individual digits of the sorted elements. A simple version of radix sort is the one that uses 10 tails (one for each digit from 0 to 9). These queues will retain at each step the numbers that have the digit corresponding to the current rank. After this division, the elements are removed from the queues in the ascending order of the queue index (from 0 to 9), and are retained in a vector (which becomes the new sequence to be sorted).
 
 #### Pseudocode: 
 ```
-  if the left index is small that right index
-  calculate the mid as (left + right) / 2
-  call recursive mergeSort for the left part mergeSort(array, left, mid)
-  call recursive mergeSort for the right part mergeSort(array, mid + 1, right)
-  merge the two parts and return the final array
+  find the maximum number of digits of array elements
+  divisior is equal with 10
+  while divisor is small than maximumNumber
+   create a bucket arrays for each 0 - 9 -> queue
+   get the current significant digit and push it in the desired bucket
+   reconstruct the array by concatinating all the buckets
+   divisior is equal to divisor * 10 -> acces the next digit
+  
 ```
 
 #### Complexity
-* Time Complexity : O(n * log(n))
-* Space Complexity: O(n)
+* Time Complexity : O(n * K)
+* Space Complexity: O(n + k)
 
 
