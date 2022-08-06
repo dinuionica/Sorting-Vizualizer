@@ -108,4 +108,20 @@ Implemented the quick sort algorithm, the most used and efficient algorithm. The
 * Time Complexity : O(n * log(n))
 * Space Complexity: O(1)
 
+## Radix Sort
+Implemented the radix sort
+
+#### Pseudocode: 
+```
+  if the left index is small that right index
+  calculate the mid as (left + right) / 2
+  call recursive mergeSort for the left part mergeSort(array, left, mid)
+  call recursive mergeSort for the right part mergeSort(array, mid + 1, right)
+  merge the two parts and return the final array
+```
+
+#### Complexity
+* Time Complexity : O(n * log(n))
+* Space Complexity: O(n)
+
 
