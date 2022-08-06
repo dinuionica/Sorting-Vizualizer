@@ -78,3 +78,21 @@ the left and rigth part of the array and in the final it merges the two parts in
 * Time Complexity : O(n * log(n))
 * Space Complexity: O(n)
 
+
+### Quick Sort
+Implemented the quick sort algorithm, the most used and efficient algorithm. The main idea of this algorithm is to pick an element as a pivot and partitions of the array around the picked pivot. The key of quick sort algorithm is, given an array of numbers and an element pi as the pivot, put pi in the desired position in the sorted array and put all smaller elements(smaller than pi) before pi, and put all greater elements(greater than x) after x.
+
+### Pseudocode: 
+```
+  if the left index is small that right index
+  calculate the mid as (left + right) / 2
+  call recursive mergeSort for the left part mergeSort(array, left, mid)
+  call recursive mergeSort for the right part mergeSort(array, mid + 1, right)
+  merge the two parts and return the final array
+```
+
+#### Complexity
+* Time Complexity : O(n * log(n))
+* Space Complexity: O(n)
+
+
