@@ -92,11 +92,20 @@ Implemented the quick sort algorithm, the most used and efficient algorithm. The
 ```
 #### Pseudocode for partition: 
 ```
-
+  pivot is equal with the last element
+  i is equal left - 1, index of smaller element
+  and indicates the right position of pivout found so far
+  for j in (left, right - 1)
+    if the current element is small than the pivot
+     ++i, increment index of smaller element
+     swap array[i] with array[j]
+   
+   swap array[i + 1] with array[right]
+   return i + 1
 ```
 
 #### Complexity
 * Time Complexity : O(n * log(n))
-* Space Complexity: O(n)
+* Space Complexity: O(1)
 
 
