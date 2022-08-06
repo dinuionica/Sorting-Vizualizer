@@ -27,7 +27,7 @@ tsc --module es2022 script.ts
 
 ## Bubble Sort
 Implemented the simplest sorting algorithms that works by swapping between two adjacent elements, if they are not in the desired order (ascending or descending). This algorithm is not suitable for large data sets.
-### Pseudocode: 
+#### Pseudocode: 
 ```
 for step in array_size
   for j in array_size - i - 1
@@ -44,7 +44,7 @@ for step in array_size
 Implemented another simplest sorting algorithms, an algorithm that works with two parts of the array : unosorted or sorted part. An element of
 unsorted part is picked and then is inserted in the desired position of sorted part of the array.
 
-### Pseudocode: 
+#### Pseudocode: 
 ```
 for i in array_size
   key is equal with array[i]
@@ -65,7 +65,7 @@ for i in array_size
 Implemented the merge sort algorithm witch is an efficient algorithms because it divides the inital array in two parts, it sorts every part,
 the left and rigth part of the array and in the final it merges the two parts in the sorted result array.
 
-### Pseudocode: 
+#### Pseudocode: 
 ```
   if the left index is small that right index
   calculate the mid as (left + right) / 2
@@ -82,7 +82,7 @@ the left and rigth part of the array and in the final it merges the two parts in
 ## Quick Sort
 Implemented the quick sort algorithm, the most used and efficient algorithm. The main idea of this algorithm is to pick an element as a pivot and partitions of the array around the picked pivot. The key of quick sort algorithm is, given an array of numbers and an element pi as the pivot, put pi in the desired position in the sorted array and put all smaller elements(smaller than pi) before pi, and put all greater elements(greater than x) after x.
 
-### Pseudocode for quick sort function: 
+#### Pseudocode for quick sort function: 
 ```
  if left is small than right
    pi is partitioning index
@@ -90,7 +90,10 @@ Implemented the quick sort algorithm, the most used and efficient algorithm. The
    call recursive quick sort for left part quickSort(array, left, pi - 1)
    call recursive quick sort for right part quickSort(array, pi + 1, right)
 ```
-### Pseudocode for partition: 
+#### Pseudocode for partition: 
+```
+
+```
 
 #### Complexity
 * Time Complexity : O(n * log(n))
