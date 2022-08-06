@@ -25,7 +25,7 @@ tsc --module es2022 script.ts
 ```
 ## The Implementation
 
-### Bubble Sort
+## Bubble Sort
 Implemented the simplest sorting algorithms that works by swapping between two adjacent elements, if they are not in the desired order (ascending or descending). This algorithm is not suitable for large data sets.
 ### Pseudocode: 
 ```
@@ -40,7 +40,7 @@ for step in array_size
 * Time Complexity : O(n ^ 2)
 * Space Complexity: O(1)
 
-### Insertion Sort
+## Insertion Sort
 Implemented another simplest sorting algorithms, an algorithm that works with two parts of the array : unosorted or sorted part. An element of
 unsorted part is picked and then is inserted in the desired position of sorted part of the array.
 
@@ -61,7 +61,7 @@ for i in array_size
 * Time Complexity : O(n ^ 2)
 * Space Complexity: O(1)
 
-### Merge Sort
+## Merge Sort
 Implemented the merge sort algorithm witch is an efficient algorithms because it divides the inital array in two parts, it sorts every part,
 the left and rigth part of the array and in the final it merges the two parts in the sorted result array.
 
@@ -79,7 +79,7 @@ the left and rigth part of the array and in the final it merges the two parts in
 * Space Complexity: O(n)
 
 
-### Quick Sort
+## Quick Sort
 Implemented the quick sort algorithm, the most used and efficient algorithm. The main idea of this algorithm is to pick an element as a pivot and partitions of the array around the picked pivot. The key of quick sort algorithm is, given an array of numbers and an element pi as the pivot, put pi in the desired position in the sorted array and put all smaller elements(smaller than pi) before pi, and put all greater elements(greater than x) after x.
 
 ### Pseudocode for quick sort function: 
