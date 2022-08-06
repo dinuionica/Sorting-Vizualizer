@@ -120,6 +120,8 @@ Implemented the Radix Sort that is a sorting algorithm that takes into account i
    get the current significant digit and push it in the desired bucket
    reconstruct the array by concatinating all the buckets
    divisior is equal to divisor * 10 -> acces the next digit
+   
+   return the final array
   
 ```
 
