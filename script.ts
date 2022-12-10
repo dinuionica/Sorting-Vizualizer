@@ -180,7 +180,7 @@ buttonRadixSort.addEventListener('click', () => {
     radixSort(arrayOfBars);
 });
 
-/* A function that change the setting of buttons (display) */
+/* A function that changes the setting of buttons (display) */
 const changeSettingsButtons = () => {
     buttonBubbleSort.disabled = true;
     buttonMergeSort.disabled = true;
