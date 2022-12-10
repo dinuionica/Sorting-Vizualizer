@@ -11,7 +11,7 @@ https://dinuionica.github.io/Sorting-Vizualizer/
 
 ## The idea of the project
 
-This project represent a web application created using TypeScript for visualization of different sorting algorithms. 
+This project represents a web application created using TypeScript for visualization of different sorting algorithms. 
 Among the algorithms implemented are **Bubble Sort , Insertion Sort, Merge Sort, Quick Sort, Radix Sort**. Within the project,
 a series of functionalities were also created, such as changing the size of the array, increasing the specific speed of sorting
  
